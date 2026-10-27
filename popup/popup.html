@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>AI Autochat</title>
+    <link rel="stylesheet" href="popup.css" />
+  </head>
+  <body>
+    <div class="app">
+      <header class="topbar">
+        <div class="brand">
+          <img class="brand-icon" src="../icons/icon48.png" width="38" height="38" alt="" />
+          <div class="brand-copy">
+            <h1>AI Autochat</h1>
+            <p>Endless small talk, automatically</p>
+          </div>
+        </div>
+
+        <label class="switch" title="Turn AI Autochat on or off">
+          <input id="enabledToggle" type="checkbox" role="switch" aria-label="Enable AI Autochat" />
+          <span class="switch-track" aria-hidden="true"></span>
+        </label>
+      </header>
+
+      <section class="hero" id="hero" data-tone="off" aria-live="polite">
+        <div class="hero-top">
+          <span class="status-dot" aria-hidden="true"></span>
+          <h2 id="heroTitle">Paused</h2>
+          <span class="hero-count" id="heroCount"></span>
+        </div>
+        <p id="heroDetail">Switch it on and open any supported AI chat.</p>
+      </section>
+
+      <section class="card">
+        <div class="section-head">
+          <h2>Rhythm</h2>
+          <span class="section-note">randomized</span>
+        </div>
+
+        <div class="timing-row">
+          <label class="field" for="minSeconds">
+            <span>Shortest wait</span>
+            <span class="input-unit">
+              <input id="minSeconds" type="number" min="5" max="3600" step="1" inputmode="numeric" />
+              <span>sec</span>
+            </span>
+          </label>
+
+          <span class="timing-dash" aria-hidden="true">to</span>
+
+          <label class="field" for="maxSeconds">
+            <span>Longest wait</span>
+            <span class="input-unit">
+              <input id="maxSeconds" type="number" min="5" max="3600" step="1" inputmode="numeric" />
+              <span>sec</span>
+            </span>
+          </label>
+        </div>
+
+        <label class="check-row" for="waitForResponse">
+          <span class="check-copy">
+            <strong>Wait for each reply</strong>
+            <small>Do not send the next message while the AI is still answering.</small>
+          </span>
+          <input id="waitForResponse" type="checkbox" />
+        </label>
+      </section>
+
+      <section class="card tabs-card">
+        <div class="section-head">
+          <h2>Open AI tabs</h2>
+          <button id="refreshButton" class="icon-button" type="button" title="Refresh tab status" aria-label="Refresh tab status">↻</button>
+        </div>
+        <ul id="tabList" class="tab-list">
+          <li class="empty-state">Looking for supported tabs…</li>
+        </ul>
+        <p class="section-note tab-note">Each open tab runs its own loop · click a row to jump.</p>
+      </section>
+
+      <details class="card details-card">
+        <summary>
+          <span>Messages &amp; options</span>
+          <span class="badge" id="customCount">built-in</span>
+        </summary>
+        <div class="details-body">
+          <div class="inline-row" id="timeoutRow">
+            <label for="responseTimeoutSeconds">Give up waiting after</label>
+            <span class="input-unit compact">
+              <input id="responseTimeoutSeconds" type="number" min="15" max="1800" step="15" inputmode="numeric" />
+              <span>sec</span>
+            </span>
+          </div>
+
+          <label class="check-row" for="showHud">
+            <span class="check-copy">
+              <strong>Show on-page chip</strong>
+              <small>A small draggable status card with a pause button.</small>
+            </span>
+            <input id="showHud" type="checkbox" />
+          </label>
+
+          <label class="field-caption" for="customMessages">Custom messages</label>
+          <textarea
+            id="customMessages"
+            rows="5"
+            maxlength="20000"
+            spellcheck="false"
+            placeholder="One message per line. Leave empty to use the built-in random prompts."
+          ></textarea>
+          <p class="section-note">
+            Blank lines are ignored. The first 200 lines are used. Keep messages short and friendly.
+          </p>
+        </div>
+      </details>
+
+      <footer class="footer">
+        <div class="footer-actions">
+          <button id="testButton" class="test-button" type="button">Send one now</button>
+          <span id="saveState" class="save-state">Synced</span>
+        </div>
+        <p class="footnote">
+          Local only · <kbd>Alt</kbd>+<kbd>Shift</kbd>+<kbd>A</kbd> toggles · v<span id="version">1.0.0</span>
+        </p>
+        <p class="warning">
+          Keep delays sensible and follow each provider's terms.
+        </p>
+      </footer>
+    </div>
+
+    <div id="toast" class="toast" role="status" hidden></div>
+
+    <script src="../shared/config.js"></script>
+    <script src="popup.js"></script>
+  </body>
+</html>

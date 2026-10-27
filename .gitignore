@@ -1,0 +1,15 @@
+# OS and editor noise
+.DS_Store
+Thumbs.db
+Desktop.ini
+*.swp
+*~
+
+# Local logs and test output
+*.log
+node_modules/
+
+# Local environment files
+.env
+.env.*
+!.env.example

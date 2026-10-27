@@ -1,0 +1,78 @@
+{
+  "manifest_version": 3,
+  "name": "AI Autochat — Infinite Random Prompts",
+  "short_name": "AI Autochat",
+  "version": "1.0.0",
+  "description": "While enabled, sends random simple messages to ChatGPT, Gemini, Claude, Copilot and other AI chat sites, then waits for each reply.",
+  "minimum_chrome_version": "109",
+  "permissions": ["storage", "scripting"],
+  "host_permissions": [
+    "https://chatgpt.com/*",
+    "https://chat.openai.com/*",
+    "https://gemini.google.com/*",
+    "https://claude.ai/*",
+    "https://copilot.microsoft.com/*",
+    "https://perplexity.ai/*",
+    "https://www.perplexity.ai/*",
+    "https://grok.com/*",
+    "https://www.grok.com/*",
+    "https://chat.deepseek.com/*",
+    "https://chat.mistral.ai/*",
+    "https://poe.com/*",
+    "https://www.poe.com/*",
+    "https://chat.qwen.ai/*",
+    "https://huggingface.co/*"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_title": "AI Autochat",
+    "default_popup": "popup/popup.html",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "32": "icons/icon32.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  "icons": {
+    "16": "icons/icon16.png",
+    "32": "icons/icon32.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://chatgpt.com/*",
+        "https://chat.openai.com/*",
+        "https://gemini.google.com/*",
+        "https://claude.ai/*",
+        "https://copilot.microsoft.com/*",
+        "https://perplexity.ai/*",
+        "https://www.perplexity.ai/*",
+        "https://grok.com/*",
+        "https://www.grok.com/*",
+        "https://chat.deepseek.com/*",
+        "https://chat.mistral.ai/*",
+        "https://poe.com/*",
+        "https://www.poe.com/*",
+        "https://chat.qwen.ai/*",
+        "https://huggingface.co/chat*"
+      ],
+      "js": ["shared/config.js", "content/content.js"],
+      "css": ["content/content.css"],
+      "run_at": "document_idle"
+    }
+  ],
+  "commands": {
+    "toggle-autochat": {
+      "suggested_key": {
+        "default": "Alt+Shift+A",
+        "mac": "Alt+Shift+A"
+      },
+      "description": "Toggle AI Autochat on or off"
+    }
+  }
+}
