@@ -1335,6 +1335,17 @@ pre {
   font-size: 12px;
 }
 
+.star-actions {
+  display: flex;
+  flex-wrap: wrap;
+  flex: 0 0 auto;
+  gap: 8px;
+}
+
+.star-actions .button {
+  width: auto;
+}
+
 .star-orbit {
   display: grid;
   place-items: center;
@@ -1551,7 +1562,15 @@ pre {
     padding: 25px;
   }
 
-  .star-card .button { width: 100%; }
+  .star-actions {
+    width: 100%;
+  }
+
+  .star-actions .button {
+    flex: 1 1 140px;
+    width: auto;
+  }
+
   .star-orbit { width: 50px; height: 50px; font-size: 23px; }
 }
 

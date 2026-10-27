@@ -312,6 +312,24 @@
     }
   }
 
+  async function copyLandingLink() {
+    const link = window.location.origin + window.location.pathname;
+    const copied = await copyText(link);
+    if (copied) {
+      showToast("Live link copied — share the loop.");
+      const button = document.getElementById("copyLandingLink");
+      if (button) {
+        const previous = button.textContent;
+        button.textContent = "Copied ✓";
+        window.setTimeout(() => {
+          button.textContent = previous;
+        }, 1800);
+      }
+    } else {
+      showToast("Copy failed. Use the address bar.");
+    }
+  }
+
   /* --------------------------------------------------------------------- */
   /* Reveal on scroll                                                       */
   /* --------------------------------------------------------------------- */
@@ -350,6 +368,7 @@
     document.getElementById("shufflePrompts")?.addEventListener("click", shufflePrompts);
     document.getElementById("copyPrompts")?.addEventListener("click", copyPrompts);
     document.getElementById("copyClone")?.addEventListener("click", copyClone);
+    document.getElementById("copyLandingLink")?.addEventListener("click", copyLandingLink);
 
     const year = new Date().getFullYear();
     document.querySelectorAll("[data-year]").forEach((element) => {

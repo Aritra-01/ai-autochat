@@ -40,7 +40,7 @@
       "license": "https://github.com/Aritra-01/ai-autochat/blob/main/LICENSE"
     }
     </script>
-    <link rel="stylesheet" href="styles.css?v=1.0.0" />
+    <link rel="stylesheet" href="styles.css?v=1.0.1" />
     <noscript><style>.reveal{opacity:1;transform:none}</style></noscript>
   </head>
   <body>
@@ -414,10 +414,13 @@
             <h2>Star the repo. <span class="gradient-text">Share the loop.</span></h2>
             <p>A star helps other people find a small, weird, open-source thing.</p>
           </div>
-          <a class="button button-primary" href="https://github.com/Aritra-01/ai-autochat" target="_blank" rel="noreferrer">
-            <svg viewBox="0 0 16 16" aria-hidden="true" class="star-icon"><path fill="currentColor" d="M8 .25l2.47 5.01 5.53.8-4 3.9.94 5.5L8 12.87 3.06 15.46 4 9.96l-4-3.9 5.53-.8L8 .25Z"/></svg>
-            Star on GitHub
-          </a>
+          <div class="star-actions">
+            <a class="button button-primary" href="https://github.com/Aritra-01/ai-autochat" target="_blank" rel="noreferrer">
+              <svg viewBox="0 0 16 16" aria-hidden="true" class="star-icon"><path fill="currentColor" d="M8 .25l2.47 5.01 5.53.8-4 3.9.94 5.5L8 12.87 3.06 15.46 4 9.96l-4-3.9 5.53-.8L8 .25Z"/></svg>
+              Star on GitHub
+            </a>
+            <button class="button button-ghost" id="copyLandingLink" type="button">Copy link</button>
+          </div>
         </div>
       </section>
     </main>
@@ -455,6 +458,6 @@
     </footer>
 
     <div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
-    <script src="landing.js?v=1.0.0"></script>
+    <script src="landing.js?v=1.0.1"></script>
   </body>
 </html>
