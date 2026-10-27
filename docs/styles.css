@@ -554,7 +554,7 @@ pre {
   min-height: 0;
   flex-direction: column;
   gap: 8px;
-  padding: 14px 15px 8px;
+  padding: 56px 15px 8px;
   overflow: hidden;
 }
 
@@ -1566,6 +1566,7 @@ pre {
   .cta-row .button { flex: 1 1 auto; }
 
   .browser-app { height: 240px; }
+  .mini-messages { padding-top: 16px; }
   .live-hud-last { display: none; }
 
   .metric { padding: 13px 10px; gap: 6px; }
