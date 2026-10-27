@@ -5,9 +5,11 @@ Desktop.ini
 *.swp
 *~
 
-# Local logs and test output
+# Local logs, test output, and packaged builds
 *.log
 node_modules/
+dist/
+*.zip
 
 # Local environment files
 .env

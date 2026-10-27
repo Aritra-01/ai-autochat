@@ -1,224 +1,237 @@
-# AI Autochat for Microsoft Edge
+<div align="center">
 
-A Manifest V3 Edge extension that keeps a conversation going with browser AI
-assistants. While it is switched on, it types a random short message into an
-open AI chat, sends it, waits for the answer to finish, waits a randomized
-interval, and repeats — indefinitely, until you pause it or close Edge.
+<img src="docs/assets/banner.png" alt="AI Autochat — endless small talk for your AI chats" width="100%" />
 
-It uses selector-based adapters for ChatGPT, Gemini, Claude, Copilot,
-Perplexity, Grok, DeepSeek, Mistral Le Chat, Poe, Qwen Chat, and HuggingChat.
+<br />
 
-> **Use it responsibly.** This automates your own logged-in browser session.
-> Automated activity may violate a provider's terms, trigger rate limits, or
-> get an account restricted. Keep the delay at 20 seconds or more, do not use
-> it for spam, and stop if a site shows a CAPTCHA or asks you to slow down.
+**One switch. Random prompts. Replies handled. Repeat forever.**
+
+A tiny Manifest V3 extension for Microsoft Edge that keeps your AI chats moving.
+
+[![Manifest V3](https://img.shields.io/badge/Edge-Manifest%20V3-0ea5e9?logo=microsoftedge&logoColor=white)](manifest.json)
+[![License: MIT](https://img.shields.io/badge/License-MIT-34d399.svg)](LICENSE)
+[![Version](https://img.shields.io/badge/version-1.0.0-6366f1.svg)](https://github.com/Aritra-01/ai-autochat/releases/latest)
+[![GitHub stars](https://img.shields.io/github/stars/Aritra-01/ai-autochat?style=social)](https://github.com/Aritra-01/ai-autochat)
+
+[**Live demo**](https://aritra-01.github.io/ai-autochat/) ·
+[**Install**](#install-in-edge) ·
+[**Prompt samples**](docs/samples.md) ·
+[**Report a bug**](https://github.com/Aritra-01/ai-autochat/issues/new?template=bug_report.yml)
+
+</div>
+
+---
+
+<p align="center">
+  <a href="https://aritra-01.github.io/ai-autochat/">
+    <img src="docs/assets/preview.gif" alt="Animated preview: AI Autochat is enabled, sends a prompt, waits for the reply, and loops." width="900" />
+  </a>
+</p>
+
+<p align="center"><sub>One loop, from paused to “again.” · <a href="https://aritra-01.github.io/ai-autochat/">Open the live landing page</a></sub></p>
+
+<details>
+<summary>Static preview (no animation)</summary>
+<p align="center">
+  <img src="docs/assets/preview-poster.png" alt="AI Autochat preview: a ChatGPT-style page with an active HUD and two prompts." width="900" />
+</p>
+</details>
+
+## Why this exists
+
+Sometimes you want a conversation to keep going without turning it into a
+production pipeline. AI Autochat is the smallest useful version of that idea:
+
+- It types a short, friendly prompt into an open AI chat.
+- It sends the prompt and waits for the reply to finish.
+- It waits a randomized delay.
+- It does it again. And again, until you turn it off.
+
+No accounts, no cloud, no dashboards. Your browser, your tabs, your prompts.
+
+## Highlights
+
+| | |
+| --- | --- |
+| **One switch** | Enable it once. The loop runs in every supported open tab and survives browser restarts. |
+| **Actually random** | A shuffled bag of 71 short prompts, plus your own custom lines. No immediate repeats. |
+| **Reply-aware** | Watches the provider’s stop/streaming control before sending the next prompt, with a timeout fallback. |
+| **Eleven sites** | ChatGPT, Gemini, Claude, Copilot, Perplexity, Grok, DeepSeek, Le Chat, Poe, Qwen, and HuggingChat. |
+| **Local-only** | No analytics, no telemetry, no servers. Settings live in `chrome.storage.local`. |
+| **Editable adapters** | Site selectors are plain data in [`shared/config.js`](shared/config.js). Add a provider in a few lines. |
 
 ## Install in Edge
 
-1. Open `edge://extensions`.
-2. Turn on **Developer mode** in the left sidebar.
-3. Click **Load unpacked**.
-4. Select the `edge-ai-autochat` folder (the folder containing `manifest.json`).
-   If you downloaded the ZIP, extract it first and select the extracted folder.
-5. Pin the extension from the toolbar's puzzle-piece menu if you want quick
-   access.
+1. Download the [latest release ZIP](https://github.com/Aritra-01/ai-autochat/releases/latest), or clone this repo.
+2. Extract it if needed.
+3. Open `edge://extensions`.
+4. Turn on **Developer mode**.
+5. Click **Load unpacked** and select the folder containing [`manifest.json`](manifest.json).
+6. Pin AI Autochat from the toolbar’s puzzle-piece menu.
 
-The extension is unpacked, so Edge may show a developer-mode reminder after a
-restart. It stays installed until you remove it.
+Or clone and load the folder directly:
+
+```powershell
+git clone https://github.com/Aritra-01/ai-autochat.git
+```
+
+> [!NOTE]
+> This is an unpacked extension, not a store listing. Edge may show a
+> developer-mode reminder after a restart. That is expected.
 
 ## Use it
 
 1. Open and sign in to one or more supported AI chats.
-   - ChatGPT: <https://chatgpt.com/>
-   - Gemini: <https://gemini.google.com/app>
-   - Claude: <https://claude.ai/new>
-   - Copilot: <https://copilot.microsoft.com/>
-   - and the other sites listed below.
 2. Click the AI Autochat toolbar icon.
 3. Flip the switch on.
-4. Leave the chat tab open. The loop starts as soon as it finds the message box.
+4. Leave the chat tab open. The first prompt goes out as soon as the composer is found.
 
-The popup lists every open supported tab and its live state. Click a row to jump
-to that tab. Each supported tab runs its own independent loop.
+Use **Send one now** in the popup to test a single message without starting the
+loop. Press <kbd>Alt</kbd>+<kbd>Shift</kbd>+<kbd>A</kbd> to toggle the extension
+globally, or click **Pause** on the small on-page chip.
 
-To stop everything, flip the switch off, press `Alt+Shift+A`, or click **Pause**
-on the small on-page status chip.
-
-### First run checks
-
-- If a tab was already open before you installed the extension, the extension
-  attaches automatically when you switch it on. If the row still says
-  **Attach**, reload that tab once.
-- **Send one now** sends a single test message even while the loop is off. Use
-  it to confirm the selectors work on a particular site.
-- Make sure you are on the actual chat page and signed in; a login screen has no
-  composer, so the extension will wait.
-
-## How the loop works
-
-1. Find the chat input using the provider's adapter.
-2. If a reply is currently streaming (a "Stop" button is visible), wait.
-3. Pick a message from a shuffled bag of built-in prompts, or from your custom
-   list. A bag avoids repeating a prompt until the pool is exhausted.
-4. Insert the text using the native value setter for textareas and
-   `document.execCommand("insertText")` for contenteditable editors, then fire
-   the input/change events that React, Vue, ProseMirror, and Quill expect.
-5. Click the send button. If no usable button is found, press Enter as a
-   fallback, then verify that the composer cleared or that generation started.
-6. Wait for the stop button to disappear (or the reply timeout to expire).
-7. Wait a random number of seconds between your minimum and maximum, then
-   repeat.
-
-The scheduler lives in the content script, not in the MV3 service worker, so it
-keeps working while the service worker is asleep. The tradeoff is that closing
-the tab, closing Edge, or discarding the tab stops that loop. Background tabs
-may also be throttled by the browser, so the real delay can be longer than the
-configured range.
-
-## Settings
+### Settings
 
 | Setting | Default | What it does |
 | --- | --- | --- |
-| **Switch** | Off | Master on/off for every supported tab. Persists across restarts. |
-| **Shortest wait** | 20 sec | Lower bound of the randomized delay after a reply. Minimum 5 sec. |
-| **Longest wait** | 45 sec | Upper bound of the randomized delay. |
-| **Wait for each reply** | On | Watches for the provider's stop/streaming control before sending again. |
-| **Give up waiting after** | 300 sec | If a reply takes longer, the loop checks the page again instead of blindly sending. |
-| **Show on-page chip** | On | Small draggable status card with a Pause button. |
-| **Custom messages** | Empty | One message per line. Empty means the 71 built-in prompts. First 200 lines, max 1,000 characters each. |
+| **Switch** | Off | Master on/off for every supported tab. |
+| **Shortest wait** | 20 sec | Lower bound of the randomized delay. Minimum 5 sec. |
+| **Longest wait** | 45 sec | Upper bound. |
+| **Wait for each reply** | On | Watches for the provider’s stop/streaming state before continuing. |
+| **Give up waiting after** | 300 sec | Fallback timeout for unusually long replies. |
+| **Show on-page chip** | On | Draggable status card with a pause button. |
+| **Custom messages** | Empty | One prompt per line. Empty means the built-in 71. First 200 lines, up to 1,000 characters each. |
 
-The reply timeout and the on-page chip live under **Messages & options** to keep
-the popup compact; the switch, delays, and tab list stay on the main screen.
+## A few things it might say
 
-The popup saves changes automatically. The keyboard shortcut `Alt+Shift+A`
-toggles the extension without opening the popup.
+| Small talk | Curious | Creative | Kind |
+| --- | --- | --- | --- |
+| “Hey! Tell me a fun fact in one sentence.” | “What’s something surprising about the ocean?” | “Give me a random word and a tiny poem about it.” | “What’s a simple way to brighten someone’s day?” |
+| “What’s a small thing that made you smile today?” | “Tell me a cool fact about trees.” | “Describe a dream treehouse.” | “Give me a random act of kindness idea.” |
+| “Recommend a song for a sunny morning.” | “What’s a fun fact about space?” | “Suggest a name for a small coffee shop.” | “What’s a nice thing to say to a friend?” |
+
+Need more? Copy a ready-made pack from [**docs/samples.md**](docs/samples.md),
+or hit **Shuffle** on the [landing page](https://aritra-01.github.io/ai-autochat/#samples)
+and copy four prompts at once.
 
 ## Supported sites
 
-| Provider | Hosts | Notes |
+| Provider | Hosts | Adapter |
 | --- | --- | --- |
-| ChatGPT | `chatgpt.com`, `chat.openai.com` | Uses `#prompt-textarea` and the stop button. |
-| Gemini | `gemini.google.com` | Quill editor and "Stop response". |
-| Claude | `claude.ai` | ProseMirror editor and "Stop response". |
-| Copilot | `copilot.microsoft.com` | Textarea composer. |
-| Perplexity | `perplexity.ai`, `www.perplexity.ai` | Textarea and submit button. |
-| Grok | `grok.com`, `www.grok.com` | Generic composer/send adapter. |
-| DeepSeek | `chat.deepseek.com` | Textarea and generic send adapter. |
-| Mistral Le Chat | `chat.mistral.ai` | Generic contenteditable adapter. |
-| Poe | `poe.com`, `www.poe.com` | Generic contenteditable/textarea adapter. |
-| Qwen Chat | `chat.qwen.ai` | Generic adapter. |
-| HuggingChat | `huggingface.co/chat*` | Generic adapter. |
+| ChatGPT | `chatgpt.com`, `chat.openai.com` | `#prompt-textarea` + stop button |
+| Gemini | `gemini.google.com` | Quill editor + “Stop response” |
+| Claude | `claude.ai` | ProseMirror editor + “Stop response” |
+| Copilot | `copilot.microsoft.com` | Textarea composer |
+| Perplexity | `perplexity.ai`, `www.perplexity.ai` | Textarea + submit |
+| Grok | `grok.com`, `www.grok.com` | Generic composer/send adapter |
+| DeepSeek | `chat.deepseek.com` | Textarea + generic send |
+| Mistral Le Chat | `chat.mistral.ai` | Generic contenteditable adapter |
+| Poe | `poe.com`, `www.poe.com` | Generic contenteditable/textarea |
+| Qwen Chat | `chat.qwen.ai` | Generic adapter |
+| HuggingChat | `huggingface.co/chat*` | Generic adapter |
 
-These are best-effort adapters. AI sites change their DOM frequently, and
-localized or A/B-tested layouts can break a selector. If a site stops working,
-the fix is usually a selector update in `shared/config.js` (see below).
+These are best-effort adapters. AI sites redesign often, and a selector can break
+overnight. The fix usually lives in [`shared/config.js`](shared/config.js) and
+takes a few lines.
 
-## Troubleshooting
-
-**The popup says "Enabled — no AI tab open"**
-Open a supported URL in a normal tab. The extension deliberately does not run on
-other sites.
-
-**The row says "Attach"**
-The content script is not in that page yet. Reload the tab, then reopen the
-popup. Enabling the extension normally injects it automatically.
-
-**The row says "Needs chat"**
-The page is probably on a login screen, a landing page, or a temporary error
-screen with no visible composer. Sign in / open a conversation.
-
-**A message was typed but not sent**
-The site may have changed its send button. The extension falls back to Enter.
-Try **Send one now**; if that also fails, update the `send` selectors for that
-site.
-
-**It sends while the AI is still replying**
-Some providers do not expose a recognizable stop button. Increase the reply
-timeout and the delay, or disable the site until its selectors can be updated.
-Sending another prompt mid-reply is the most common cause of overlapping or
-confusing responses.
-
-**The delay is much longer than configured**
-Edge throttles timers in background/minimized tabs. Keep the AI tab visible for
-predictable timing, or treat the configured delay as a lower bound.
-
-**It stopped after Edge restarted**
-The switch state persists, so it should resume on the next page load. If the
-tab was discarded, activate it to let the page reload. If the extension itself
-was reloaded, refresh the AI tab.
-
-**It is stuck after a CAPTCHA or rate limit**
-Pause the extension, complete the challenge manually, then wait before
-restarting. Repeated automated traffic can make the restriction worse.
-
-## Add or repair a site adapter
-
-All selectors live in `shared/config.js`. Each entry looks like this:
-
-```js
-{
-  id: "example",
-  name: "Example AI",
-  hosts: ["example.ai"],
-  composer: ["textarea", "div[contenteditable='true']"],
-  send: ["button[type='submit']", "button[aria-label*='Send' i]"],
-  generating: ["button[aria-label*='Stop' i]"]
-}
-```
-
-To add a new provider:
-
-1. Add the adapter object to `SITES`.
-2. Add the URL pattern to `content_scripts[0].matches` and
-   `host_permissions` in `manifest.json`.
-3. Reload the extension at `edge://extensions` (the reload arrow on its card).
-4. Open the site and use **Send one now** to verify.
-
-Selectors should be ordered from most specific to most generic. The content
-script also has a generic fallback that chooses the visible editable element
-nearest the bottom of the page and the nearest actionable button.
-
-## File map
+## How the loop works
 
 ```text
-edge-ai-autochat/
-├── manifest.json          Manifest V3, permissions, content-script matches
-├── background.js          Defaults, badge, keyboard toggle, automatic injection
-├── shared/
-│   └── config.js          Site adapters, defaults, built-in prompts
-├── content/
-│   ├── content.js         Typing, sending, waiting, loop, on-page chip
-│   └── content.css        Namespaced status-chip styles
-├── popup/
-│   ├── popup.html         Popup markup
-│   ├── popup.css          Popup styling (dark/light)
-│   └── popup.js           Settings, tab status, test send
-├── icons/                 Generated PNG icons
-└── scripts/
-    └── make-icons.ps1     Reproducible icon generator
+┌──────────────┐   ┌──────────────┐   ┌──────────────┐   ┌──────────────┐
+│  Pick prompt │ → │ Type + send  │ → │ Wait for the │ → │ Random delay │
+│  (shuffle)   │   │ into the tab │   │ reply to end │   │   20–45s     │
+└──────────────┘   └──────────────┘   └──────────────┘   └──────┬───────┘
+       ↑                                                          │
+       └──────────────────── repeat until paused ────────────────┘
 ```
 
-Reloading the extension does not automatically reload already-open tabs. Refresh
-them after changing content-script code.
+The scheduler lives in the content script, so it keeps working while MV3’s
+service worker sleeps. Closing the tab, closing Edge, or discarding the tab
+stops that loop. Background tabs may be throttled by the browser, so the real
+delay can be longer than configured.
 
-## Privacy
+## Prompt packs
+
+The `docs/samples.md` file contains four copy-paste packs:
+
+- **Small talk** — light, human openers.
+- **Curious** — short “tell me something” questions.
+- **Creative** — tiny story, poem, and naming prompts.
+- **Kind** — compliments, tiny challenges, and reflection questions.
+
+Paste one prompt per line into **Messages & options → Custom messages**.
+
+## Privacy and responsible use
+
+> [!WARNING]
+> This automates your own logged-in browser session. Automated activity may
+> violate a provider’s terms, trigger rate limits, or get an account
+> restricted. Keep delays at 20 seconds or more, use it for light personal
+> experiments, and stop if a site asks you to slow down or shows a CAPTCHA.
 
 - No analytics, telemetry, external servers, or remote code.
-- Settings and the on/off switch use `chrome.storage.local` only.
-- Messages are typed into the page exactly as if you typed them, so they are
-  sent to the AI provider under your account.
+- No account connection. Prompts are typed into the page as if you typed them.
 - The extension reads the page only to find inputs, buttons, and reply state.
+- Not affiliated with OpenAI, Google, Anthropic, Microsoft, Perplexity, xAI,
+  DeepSeek, Mistral, Poe, Alibaba, or Hugging Face.
 
-## Known limitations
+## Project layout
 
-- Not headless: Edge and the tab must remain open.
-- Site UI changes can break an adapter at any time.
-- The stop detection is heuristic; providers without a stop control rely on the
-  timeout and composer state.
-- Edge may throttle or discard background tabs.
-- No account, proxy, CAPTCHA, or rate-limit bypass. This is a UI automation
-  helper, not a bot farm.
+```text
+ai-autochat/
+├── manifest.json          Manifest V3, permissions, content-script matches
+├── background.js          Badge, defaults, keyboard toggle, auto-injection
+├── shared/config.js       Site adapters, defaults, 71 built-in prompts
+├── content/               Typing, sending, reply detection, loop, status chip
+├── popup/                 Toolbar popup: switch, timing, tabs, samples
+├── docs/                  Landing page, animated preview, prompt packs
+├── icons/                 Generated extension icons
+├── scripts/               Reproducible icon generator
+├── LICENSE                MIT
+└── README.md
+```
 
-## Version
+Reload the extension from `edge://extensions` after changing content-script
+code, then refresh the AI tab.
 
-1.0.0
+## Development
+
+There is no build step. The extension is plain HTML, CSS, and JavaScript.
+
+```powershell
+git clone https://github.com/Aritra-01/ai-autochat.git
+cd ai-autochat
+pwsh scripts/validate.ps1
+```
+
+The validator checks JavaScript syntax, the manifest, and the key landing-page
+assets. CI is intentionally omitted; this is a small, dependency-free project.
+
+The landing page is served straight from `docs/`:
+
+```powershell
+python -m http.server 8000 --directory docs
+```
+
+Then open `http://localhost:8000`.
+
+See [CONTRIBUTING.md](CONTRIBUTING.md) for the short version, and
+[SECURITY.md](SECURITY.md) for private vulnerability reports.
+
+## If this made you smile
+
+Star the repo. Share the loop. Open an issue with a site that needs a new adapter.
+
+<p align="center">
+  <a href="https://github.com/Aritra-01/ai-autochat">
+    <img src="https://img.shields.io/github/stars/Aritra-01/ai-autochat?style=for-the-badge&color=6366f1" alt="Star AI Autochat on GitHub" />
+  </a>
+</p>
+
+## License
+
+[MIT](LICENSE) © 2026 Aritra-01.
+
+<div align="center">
+  <sub>Built for Microsoft Edge · Manifest V3 · No data leaves your browser.</sub>
+</div>

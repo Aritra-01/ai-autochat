@@ -1,0 +1,51 @@
+name: Feature request
+description: Suggest a provider, prompt pack, UI improvement, or workflow.
+title: "[Feature]: "
+labels:
+  - enhancement
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Keep the scope small and useful. This project favors focused features
+        that do not add a backend or remote code.
+  - type: textarea
+    id: problem
+    attributes:
+      label: What problem would this solve?
+      placeholder: I want to ...
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed solution
+    validations:
+      required: true
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+  - type: dropdown
+    id: scope
+    attributes:
+      label: Area
+      options:
+        - New AI site adapter
+        - Prompt pack
+        - Popup or on-page UI
+        - Loop behavior
+        - Documentation or landing page
+        - Developer experience
+        - Other
+    validations:
+      required: true
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Checks
+      options:
+        - label: This request does not require a backend, telemetry, or remote code.
+          required: true
+        - label: This request is not primarily about bypassing rate limits, CAPTCHAs, or account restrictions.
+          required: true

@@ -1,0 +1,460 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>AI Autochat — Endless small talk for your AI chats</title>
+    <meta
+      name="description"
+      content="A free, open-source Edge extension that sends random prompts to ChatGPT, Gemini, Claude, Copilot and other AI chats, waits for each reply, and loops."
+    />
+    <meta name="theme-color" content="#060a12" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="AI Autochat — Your AI chats, on repeat." />
+    <meta property="og:url" content="https://aritra-01.github.io/ai-autochat/" />
+    <meta property="og:site_name" content="AI Autochat" />
+    <meta
+      property="og:description"
+      content="One switch. Random prompts. Replies handled. An open-source Manifest V3 extension for Edge."
+    />
+    <meta property="og:image" content="https://aritra-01.github.io/ai-autochat/assets/social-preview.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="AI Autochat — Your AI chats, on repeat." />
+    <meta
+      name="twitter:description"
+      content="One switch. Random prompts. Replies handled. An open-source Edge extension."
+    />
+    <meta name="twitter:image" content="https://aritra-01.github.io/ai-autochat/assets/social-preview.png" />
+    <link rel="icon" type="image/png" href="assets/favicon.png" />
+    <link rel="canonical" href="https://aritra-01.github.io/ai-autochat/" />
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "AI Autochat",
+      "applicationCategory": "BrowserApplication",
+      "operatingSystem": "Windows, macOS, Linux",
+      "url": "https://aritra-01.github.io/ai-autochat/",
+      "description": "A free, open-source Edge extension that sends random prompts to AI chats, waits for each reply, and loops.",
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+      "license": "https://github.com/Aritra-01/ai-autochat/blob/main/LICENSE"
+    }
+    </script>
+    <link rel="stylesheet" href="styles.css" />
+    <noscript><style>.reveal{opacity:1;transform:none}</style></noscript>
+  </head>
+  <body>
+    <div class="page-glow glow-left" aria-hidden="true"></div>
+    <div class="page-glow glow-right" aria-hidden="true"></div>
+    <div class="page-grid" aria-hidden="true"></div>
+
+    <header class="site-header">
+      <div class="container header-inner">
+        <a class="brand" href="#" aria-label="AI Autochat home">
+          <img src="assets/logo.png" alt="" width="34" height="34" />
+          <span class="brand-name">AI Autochat</span>
+          <span class="brand-tag">for Edge</span>
+        </a>
+
+        <nav class="nav-links" aria-label="Main navigation">
+          <a href="#demo">Demo</a>
+          <a href="#features">Features</a>
+          <a href="#samples">Samples</a>
+          <a href="#install">Install</a>
+        </nav>
+
+        <a class="nav-github" href="https://github.com/Aritra-01/ai-autochat" target="_blank" rel="noreferrer">
+          <svg viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg>
+          GitHub
+          <span class="arrow">↗</span>
+        </a>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero section">
+        <div class="container hero-grid">
+          <div class="hero-copy">
+            <div class="eyebrow"><span class="eyebrow-dot"></span> Open source · Manifest V3 · MIT</div>
+            <h1>Your AI chats,<br /><span class="gradient-text">on repeat.</span></h1>
+            <p class="lede">
+              One switch sends a random prompt, waits for the reply, and does it again.
+              Built for the AI tabs you already have open.
+            </p>
+            <div class="cta-row">
+              <a class="button button-primary" href="#install">
+                Install for Edge
+                <span class="button-arrow">↗</span>
+              </a>
+              <a class="button button-ghost" href="#demo">Watch it loop <span>↓</span></a>
+            </div>
+            <div class="hero-meta">
+              <span>Free & open source</span><i></i><span>No tracking</span><i></i><span>Works on 11 AI sites</span>
+            </div>
+          </div>
+
+          <div class="hero-visual" aria-label="Animated AI Autochat preview">
+            <div class="visual-glow" aria-hidden="true"></div>
+            <div class="browser-card">
+              <div class="browser-chrome">
+                <span class="traffic-dots" aria-hidden="true"><i></i><i></i><i></i></span>
+                <span class="browser-address">chatgpt.com</span>
+                <span class="browser-ext"><img src="assets/logo.png" alt="" /></span>
+              </div>
+              <div class="browser-app">
+                <aside class="mini-sidebar" aria-hidden="true">
+                  <div class="mini-brand"><span>◎</span> ChatGPT</div>
+                  <div class="mini-new">＋ New chat</div>
+                  <div class="mini-label">Today</div>
+                  <div class="mini-item active"><span>◌</span> Fun facts</div>
+                  <div class="mini-item"><span>◌</span> Tiny wins</div>
+                  <div class="mini-item"><span>◌</span> Weekend ideas</div>
+                  <div class="mini-user"><span>A</span><b>Aritra</b></div>
+                </aside>
+                <div class="mini-chat">
+                  <div class="mini-chat-head"><b>ChatGPT</b><span>GPT-5</span><i>•••</i></div>
+                  <div class="mini-messages" id="liveMessages">
+                    <div class="mini-empty" id="miniEmpty">
+                      What can I help with?
+                      <span>The loop handles the rest.</span>
+                    </div>
+                  </div>
+                  <div class="mini-composer">
+                    <span class="mini-prompt" id="livePrompt"></span>
+                    <span class="mini-caret" id="liveCaret"></span>
+                    <span class="mini-send" id="liveSend">↑</span>
+                  </div>
+                </div>
+              </div>
+              <aside class="live-hud" aria-hidden="true">
+                <div class="live-hud-head"><span class="live-dot"></span><b>AI Autochat</b><span class="live-on">ON</span></div>
+                <div class="live-hud-row"><span id="liveState">Next message</span><span id="liveCount">in 18s</span></div>
+                <div class="live-hud-last" id="liveLast">Last: “Tell me a fun fact about space.”</div>
+              </aside>
+              <div class="live-pill" aria-hidden="true"><span>∞</span> looping</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="container metric-strip" aria-label="Project statistics">
+          <div class="metric"><b>11</b><span>AI chat sites</span></div>
+          <div class="metric"><b>71</b><span>built-in prompts</span></div>
+          <div class="metric"><b>0</b><span>trackers or accounts</span></div>
+          <div class="metric"><b>1</b><span>switch to start</span></div>
+        </div>
+      </section>
+
+      <section class="section section-demo" id="demo">
+        <div class="container">
+          <div class="section-head reveal">
+            <div>
+              <div class="eyebrow">The loop, in motion</div>
+              <h2>From paused to <span class="gradient-text">looping</span><br />in one click.</h2>
+            </div>
+            <p>
+              A ten-second look at the popup, the on-page chip, and a full prompt-and-reply cycle.
+            </p>
+          </div>
+
+          <figure class="demo-frame reveal">
+            <div class="demo-bar" aria-hidden="true">
+              <span class="traffic-dots"><i></i><i></i><i></i></span>
+              <span>ai-autochat · animated preview</span>
+              <span class="demo-live"><i></i> 10s loop</span>
+            </div>
+            <img
+              src="assets/preview.gif"
+              width="960"
+              height="540"
+              loading="lazy"
+              alt="Animated preview showing AI Autochat being enabled, sending a prompt, waiting for a reply, and looping."
+            />
+            <figcaption>
+              <span>Random prompt</span>
+              <span>Waits for the reply</span>
+              <span>Repeats forever</span>
+            </figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section class="section" id="features">
+        <div class="container">
+          <div class="section-head reveal">
+            <div>
+              <div class="eyebrow">Small surface, sharp edges</div>
+              <h2>Everything it needs.<br /><span class="gradient-text">Nothing it doesn’t.</span></h2>
+            </div>
+            <p>
+              No dashboards, no accounts, no cloud. Just a tiny loop that keeps a conversation moving.
+            </p>
+          </div>
+
+          <div class="feature-grid">
+            <article class="feature-card reveal">
+              <span class="feature-icon">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8.5 15.5c-2 0-3.5-1.6-3.5-3.5s1.5-3.5 3.5-3.5c2.7 0 4.3 7 7 7 2 0 3.5-1.6 3.5-3.5S17.5 8.5 15.5 8.5c-2.7 0-4.3 7-7 7Z"/></svg>
+              </span>
+              <h3>One switch, infinite loop</h3>
+              <p>Flip it on and walk away. The loop keeps going until you pause it, close the tab, or close Edge.</p>
+            </article>
+
+            <article class="feature-card reveal">
+              <span class="feature-icon">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h10M4 17h7"/><path d="m16 14 3 3-3 3"/></svg>
+              </span>
+              <h3>Random by design</h3>
+              <p>A shuffled bag of 71 short prompts, plus your own lines. No immediate repeats, no clever prompt engineering.</p>
+            </article>
+
+            <article class="feature-card reveal">
+              <span class="feature-icon">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="13" r="7"/><path d="M12 10v3l2 2M9 3h6"/></svg>
+              </span>
+              <h3>Waits for the reply</h3>
+              <p>It watches the provider’s stop button before moving on, with a configurable timeout as a fallback.</p>
+            </article>
+
+            <article class="feature-card reveal">
+              <span class="feature-icon">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="M3 9h18M7 14h4"/></svg>
+              </span>
+              <h3>Every tab, tracked</h3>
+              <p>The popup shows each open AI tab and its live state. Click a row to jump straight to it.</p>
+            </article>
+
+            <article class="feature-card reveal">
+              <span class="feature-icon">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 4.5 6v5.5c0 4.7 3.2 8 7.5 9.5 4.3-1.5 7.5-4.8 7.5-9.5V6L12 3Z"/><path d="m9 12 2 2 4-4"/></svg>
+              </span>
+              <h3>Local-only, by default</h3>
+              <p>No analytics, no servers, no account. Settings stay in <code>chrome.storage.local</code>.</p>
+            </article>
+
+            <article class="feature-card reveal">
+              <span class="feature-icon">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m8 8-4 4 4 4M16 8l4 4-4 4M13 5l-2 14"/></svg>
+              </span>
+              <h3>Built to be edited</h3>
+              <p>Site adapters are plain data. Add a provider or repair a selector in a few lines. MIT licensed.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section-how" id="how">
+        <div class="container">
+          <div class="section-head reveal">
+            <div>
+              <div class="eyebrow">Three steps</div>
+              <h2>No build. No sign-up.<br class="mobile-break" /> <span class="gradient-text">No fuss.</span></h2>
+            </div>
+          </div>
+
+          <div class="steps">
+            <article class="step reveal">
+              <span class="step-number">01</span>
+              <h3>Load it in Edge</h3>
+              <p>Open <code>edge://extensions</code>, enable Developer mode, and load the unpacked folder.</p>
+            </article>
+            <article class="step reveal">
+              <span class="step-number">02</span>
+              <h3>Open an AI chat</h3>
+              <p>Sign in to ChatGPT, Gemini, Claude, Copilot, or any of the other supported sites.</p>
+            </article>
+            <article class="step reveal">
+              <span class="step-number">03</span>
+              <h3>Flip the switch</h3>
+              <p>Pick a delay, turn it on, and leave the tab open. The first prompt goes out in seconds.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section-samples" id="samples">
+        <div class="container">
+          <div class="section-head reveal">
+            <div>
+              <div class="eyebrow">A few samples</div>
+              <h2>Things it might <span class="gradient-text">say next.</span></h2>
+            </div>
+            <p>
+              Built-in prompts are short and friendly. Mix your own in
+              <strong>Messages &amp; options → Custom messages</strong>.
+            </p>
+          </div>
+
+          <div class="prompt-toolbar reveal">
+            <span>Four random prompts from the pack</span>
+            <div class="prompt-actions">
+              <button class="button button-small button-ghost" id="copyPrompts" type="button">Copy all</button>
+              <button class="button button-small button-primary" id="shufflePrompts" type="button">
+                Shuffle
+                <span aria-hidden="true">↻</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="prompt-grid" id="promptGrid">
+            <article class="prompt-card reveal" data-category="Small talk">
+              <span class="prompt-category">Small talk</span>
+              <p>Hey! Tell me a fun fact in one sentence.</p>
+              <span class="prompt-mark">∞</span>
+            </article>
+            <article class="prompt-card reveal" data-category="Curious">
+              <span class="prompt-category">Curious</span>
+              <p>What’s something surprising about the ocean?</p>
+              <span class="prompt-mark">∞</span>
+            </article>
+            <article class="prompt-card reveal" data-category="Creative">
+              <span class="prompt-category">Creative</span>
+              <p>Give me a random word and a tiny poem about it.</p>
+              <span class="prompt-mark">∞</span>
+            </article>
+            <article class="prompt-card reveal" data-category="Kind">
+              <span class="prompt-category">Kind</span>
+              <p>What’s a simple way to brighten someone’s day?</p>
+              <span class="prompt-mark">∞</span>
+            </article>
+          </div>
+
+          <p class="fine-print reveal">
+            Paste one prompt per line for custom messages. The extension uses the first 200 lines, up to 1,000 characters each.
+          </p>
+        </div>
+      </section>
+
+      <section class="section section-sites" id="sites">
+        <div class="container">
+          <div class="section-head reveal">
+            <div>
+              <div class="eyebrow">The usual suspects</div>
+              <h2>Eleven places to <span class="gradient-text">keep talking.</span></h2>
+            </div>
+            <p>Selectors are best-effort. If a provider ships a redesign, the fix lives in one config file.</p>
+          </div>
+
+          <div class="site-grid reveal">
+            <span class="site-pill"><i class="site-dot chatgpt"></i>ChatGPT</span>
+            <span class="site-pill"><i class="site-dot gemini"></i>Gemini</span>
+            <span class="site-pill"><i class="site-dot claude"></i>Claude</span>
+            <span class="site-pill"><i class="site-dot copilot"></i>Copilot</span>
+            <span class="site-pill"><i class="site-dot perplexity"></i>Perplexity</span>
+            <span class="site-pill"><i class="site-dot grok"></i>Grok</span>
+            <span class="site-pill"><i class="site-dot deepseek"></i>DeepSeek</span>
+            <span class="site-pill"><i class="site-dot mistral"></i>Le Chat</span>
+            <span class="site-pill"><i class="site-dot poe"></i>Poe</span>
+            <span class="site-pill"><i class="site-dot qwen"></i>Qwen</span>
+            <span class="site-pill"><i class="site-dot huggingchat"></i>HuggingChat</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section-install" id="install">
+        <div class="container install-grid">
+          <div class="install-copy reveal">
+            <div class="eyebrow">Get the extension</div>
+            <h2>Clone it. Load it. <span class="gradient-text">Loop it.</span></h2>
+            <p>
+              The extension is unpacked, not store-published. Edge will show a developer-mode
+              reminder after restarts; that is normal for a local build.
+            </p>
+
+            <div class="install-steps">
+              <div class="install-step"><span>1</span><p>Clone the repository or download the release ZIP.</p></div>
+              <div class="install-step"><span>2</span><p>Open <code>edge://extensions</code> and enable Developer mode.</p></div>
+              <div class="install-step"><span>3</span><p>Choose <strong>Load unpacked</strong> and select the folder containing <code>manifest.json</code>.</p></div>
+            </div>
+
+            <div class="install-actions">
+              <a class="button button-primary" href="https://github.com/Aritra-01/ai-autochat" target="_blank" rel="noreferrer">
+                Open GitHub <span class="button-arrow">↗</span>
+              </a>
+              <a class="button button-ghost" href="https://github.com/Aritra-01/ai-autochat/releases/latest" target="_blank" rel="noreferrer">
+                Download ZIP
+              </a>
+            </div>
+          </div>
+
+          <div class="code-card reveal" aria-label="Clone command">
+            <div class="code-head"><span>terminal</span><span class="code-dots"><i></i><i></i><i></i></span></div>
+            <pre><code id="cloneCommand">git clone https://github.com/Aritra-01/ai-autochat.git</code></pre>
+            <button class="copy-button" id="copyClone" type="button">Copy command</button>
+            <div class="code-note">Then load <code>ai-autochat/</code> as an unpacked extension.</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section-safety">
+        <div class="container safety-card reveal">
+          <div class="safety-icon">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 4.5 6v5.5c0 4.7 3.2 8 7.5 9.5 4.3-1.5 7.5-4.8 7.5-9.5V6L12 3Z"/><path d="M12 8v5M12 16h.01"/></svg>
+          </div>
+          <div>
+            <h2>Use it like a human would.</h2>
+            <p>
+              This automates your own logged-in browser session. Automated activity may violate a
+              provider’s terms, trigger rate limits, or get an account restricted. Keep delays at
+              20 seconds or more, use it for light personal experiments, and stop if a site asks
+              you to slow down or shows a CAPTCHA.
+            </p>
+            <p class="safety-small">
+              Not affiliated with OpenAI, Google, Anthropic, Microsoft, Perplexity, xAI, DeepSeek,
+              Mistral, Poe, Alibaba, or Hugging Face. No data collection, no telemetry, no servers.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section star-section">
+        <div class="container star-card reveal">
+          <div class="star-orbit" aria-hidden="true">∞</div>
+          <div>
+            <div class="eyebrow">If it made you smile</div>
+            <h2>Star the repo. <span class="gradient-text">Share the loop.</span></h2>
+            <p>A star helps other people find a small, weird, open-source thing.</p>
+          </div>
+          <a class="button button-primary" href="https://github.com/Aritra-01/ai-autochat" target="_blank" rel="noreferrer">
+            <svg viewBox="0 0 16 16" aria-hidden="true" class="star-icon"><path fill="currentColor" d="M8 .25l2.47 5.01 5.53.8-4 3.9.94 5.5L8 12.87 3.06 15.46 4 9.96l-4-3.9 5.53-.8L8 .25Z"/></svg>
+            Star on GitHub
+          </a>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-grid">
+        <div class="footer-brand">
+          <a class="brand" href="#">
+            <img src="assets/logo.png" alt="" width="32" height="32" />
+            <span class="brand-name">AI Autochat</span>
+          </a>
+          <p>Endless small talk for your AI chats.<br />Built for Microsoft Edge.</p>
+        </div>
+
+        <div class="footer-links">
+          <div>
+            <span>Project</span>
+            <a href="#features">Features</a>
+            <a href="#samples">Samples</a>
+            <a href="#install">Install</a>
+          </div>
+          <div>
+            <span>GitHub</span>
+            <a href="https://github.com/Aritra-01/ai-autochat" target="_blank" rel="noreferrer">Source</a>
+            <a href="https://github.com/Aritra-01/ai-autochat/issues" target="_blank" rel="noreferrer">Issues</a>
+            <a href="https://github.com/Aritra-01/ai-autochat/blob/main/LICENSE" target="_blank" rel="noreferrer">MIT License</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="container footer-bottom">
+        <span>© 2026 Aritra · MIT</span>
+        <span>Made for the tab you forgot was open.</span>
+      </div>
+    </footer>
+
+    <div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
+    <script src="landing.js"></script>
+  </body>
+</html>

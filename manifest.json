@@ -4,6 +4,7 @@
   "short_name": "AI Autochat",
   "version": "1.0.0",
   "description": "While enabled, sends random simple messages to ChatGPT, Gemini, Claude, Copilot and other AI chat sites, then waits for each reply.",
+  "homepage_url": "https://aritra-01.github.io/ai-autochat/",
   "minimum_chrome_version": "109",
   "permissions": ["storage", "scripting"],
   "host_permissions": [

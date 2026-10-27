@@ -1,0 +1,83 @@
+name: Bug report
+description: Report a broken site adapter, popup issue, or loop problem.
+title: "[Bug]: "
+labels:
+  - bug
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for testing AI Autochat. Please do not paste private chat
+        contents, cookies, or account details. A screenshot of the composer or
+        popup status is usually enough.
+  - type: input
+    id: site
+    attributes:
+      label: AI site and URL
+      description: Which provider and page path were you using?
+      placeholder: https://chatgpt.com/
+    validations:
+      required: true
+  - type: input
+    id: edge
+    attributes:
+      label: Edge version
+      description: Find it at edge://version.
+      placeholder: 156.0.4314.42
+    validations:
+      required: true
+  - type: dropdown
+    id: area
+    attributes:
+      label: What is affected?
+      options:
+        - Sending a prompt
+        - Waiting for a reply
+        - Site adapter / composer detection
+        - Popup or tab status
+        - On-page chip
+        - Installation or permissions
+        - Documentation
+        - Other
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      placeholder: |
+        1. Open ...
+        2. Enable ...
+        3. Click Send one now ...
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual behavior
+      description: Include the popup status and any visible error.
+    validations:
+      required: true
+  - type: textarea
+    id: console
+    attributes:
+      label: Console output (optional)
+      description: Paste only relevant errors; remove anything private.
+      render: shell
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Checks
+      options:
+        - label: I reloaded the extension at edge://extensions and refreshed the AI tab.
+          required: true
+        - label: I am using my own logged-in session, not a shared or automated account.
+          required: true
+        - label: I have removed private information from this report.
+          required: true

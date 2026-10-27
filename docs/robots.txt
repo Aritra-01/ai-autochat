@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://aritra-01.github.io/ai-autochat/sitemap.xml
